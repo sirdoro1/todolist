@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
+import Header from './components/Header';
+import ItemLists from './components/ItemLists';
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
     {id: 2, name: 'Task 2', status: true},
   ]);
 
-  function handleAddItemClick(){
+  function  handleAddItemClick(){
     let task = document.getElementById('task').value;
     if(task === '') return;
     let newItem = {id: items.length + 1, name: task, status: false};
@@ -18,12 +18,12 @@ function App() {
     document.getElementById('task').value = '';
   }
 
-  function handleDeleteBtnClick(id){
+  const deleteBtnClick  = (id) => {
     let selectedItem = {id: id};
     setItems(items.filter(item => item.id !== selectedItem.id));
   }
 
-  function handleDoneBtnClick(id){
+  const doneBtnClick = (id) => {
     setItems(items.map((item)=>{
       if(item.id === id){
         return {...item, status: !item.status}
@@ -37,7 +37,7 @@ function App() {
       <div className='container'>
         <div className='row'>
           <div className="col-md-12">
-            <h4 className="text-center mt-5 mb-1">Todo List</h4>
+            <Header header='To-Do List' />
           </div>
           <div className="col-md-12">
             <hr className="border border-muted opacity-50"></hr>
@@ -55,24 +55,7 @@ function App() {
           </div>
           <div className="col-md-12">
             <ul className="list-group">
-                {items.map((item) =>{
-                    return (<li className="list-group-item" key={item.id}>
-                                <div className="d-flex justify-content-between align-items-center w-100">
-                                <span className="">{item.name}</span>
-                                <div className="d-flex align-items-center">
-                                    <div className="vr me-2 ms-2"></div>
-                                    <button className="btn btn-xs btn-danger" onClick={()=> handleDeleteBtnClick(item.id)}>
-                                    <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                    <div className="vr me-2 ms-2"></div>
-                                    <button className={`btn btn-xs ${item.status? 'btn-warning disabled':'btn-success'}`} onClick={()=>handleDoneBtnClick(item.id)}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                    </button>
-                                </div>
-                                </div>
-                            </li>
-                        )
-                  })}
+                <ItemLists items={items} doneBtnClick={doneBtnClick} deleteBtnClick={deleteBtnClick} />
             </ul>
           </div>
         </div>
