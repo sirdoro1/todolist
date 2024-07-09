@@ -5,10 +5,7 @@ import ItemLists from './components/ItemLists';
 
 function App() {
 
-  const [items,setItems] = useState([
-    {id: 1, name: 'Task 1', status: false},
-    {id: 2, name: 'Task 2', status: true},
-  ]);
+  const [items,setItems] = useState([]);
 
   function  handleAddItemClick(){
     let task = document.getElementById('task').value;
