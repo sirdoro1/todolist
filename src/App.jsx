@@ -11,7 +11,9 @@ function App() {
   ]);
 
   function handleAddItemClick(){
-    let newItem = {id: items.length + 1, name: document.getElementById('task').value, status: false};
+    let task = document.getElementById('task').value;
+    if(task === '') return;
+    let newItem = {id: items.length + 1, name: task, status: false};
     setItems([...items, newItem]);
     document.getElementById('task').value = '';
   }
