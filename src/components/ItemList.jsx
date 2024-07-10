@@ -4,7 +4,6 @@ import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
 import propTypes from 'prop-types';
 
 const ItemList = ({item, deleteBtnClick, doneBtnClick}) => {
-    // if item not null then return the following JSX
     return (
         <li className="list-group-item" key={item.id}>
             <div className="d-flex justify-content-between align-items-center w-100">
