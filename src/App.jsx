@@ -2,12 +2,13 @@ import { useState } from 'react';
 
 import Header from './components/Header';
 import ItemLists from './components/ItemLists';
+import AddItem from './components/AddItem';
 
 function App() {
 
   const [items,setItems] = useState([]);
 
-  function  handleAddItemClick(){
+  const addItemClick = () => {
     let task = document.getElementById('task').value;
     if(task === '') return;
     let newItem = {id: items.length + 1, name: task, status: false};
@@ -40,12 +41,7 @@ function App() {
             <hr className="border border-muted opacity-50"></hr>
           </div>
           <div className="col-md-12">
-            <div className="input-group mb-3">
-              <input type="text"  className="form-control" id="task" placeholder='Add a new task' />
-              <div className="input-group-append">
-                <button className="btn btn-primary" onClick={handleAddItemClick} type="button">Add Task</button>
-              </div>
-            </div>
+            <AddItem addItemClick={addItemClick} />
           </div>
           <div className="col-md-12">
             <hr className="border border-muted opacity-50"></hr>
