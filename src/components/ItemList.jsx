@@ -11,7 +11,7 @@ const ItemList = ({item, deleteBtnClick, doneBtnClick}) => {
                 <div className="d-flex align-items-center">
                     <div className="vr me-2 ms-2"></div>
                     <button className="btn btn-xs btn-secondary">
-                        <FontAwesomeIcon icon={faEdit}>
+                        <FontAwesomeIcon icon={faEdit} />
                     </button>
                     <div className="vr me-2 ms-2"></div>
                     <button className="btn btn-xs btn-danger" onClick={() => deleteBtnClick(item.id)}>
