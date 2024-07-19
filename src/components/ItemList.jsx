@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheck, faEdit} from '@fortawesome/free-solid-svg-icons';
 
 import propTypes from 'prop-types';
 
@@ -10,6 +10,10 @@ const ItemList = ({item, deleteBtnClick, doneBtnClick}) => {
                 <span className="">{item.name}</span>
                 <div className="d-flex align-items-center">
                     <div className="vr me-2 ms-2"></div>
+                    <button className="btn btn-xs btn-secondary">
+                        <FontAwesomeIcon icon={faEdit}>
+                    </button>
+                    <div className="vr me-2 ms-2"></div>
                     <button className="btn btn-xs btn-danger" onClick={() => deleteBtnClick(item.id)}>
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
@@ -17,6 +21,7 @@ const ItemList = ({item, deleteBtnClick, doneBtnClick}) => {
                     <button className={`btn btn-xs ${item.status ? 'btn-warning disabled' : 'btn-success'}`} onClick={() => doneBtnClick(item.id)}>
                         <FontAwesomeIcon icon={faCheck} />
                     </button>
+                    
                 </div>
             </div>
         </li>
