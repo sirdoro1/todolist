@@ -1,7 +1,7 @@
 import ItemList from './ItemList';
 import propTypes from 'prop-types';
 
-const ItemLists = ({ items, deleteBtnClick, doneBtnClick }) => {
+const ItemLists = ({ items, deleteBtnClick, doneBtnClick, editBtnClick }) => {
   return (
     <ul className="list-group">
       {
@@ -13,6 +13,7 @@ const ItemLists = ({ items, deleteBtnClick, doneBtnClick }) => {
           item={item}
           deleteBtnClick={deleteBtnClick}
           doneBtnClick={doneBtnClick}
+          editBtnClick={editBtnClick}
         />
       ))}
     </ul>
@@ -23,6 +24,7 @@ ItemLists.propTypes = {
   items: propTypes.array.isRequired,
   deleteBtnClick: propTypes.func.isRequired,
   doneBtnClick: propTypes.func.isRequired,
+  editBtnClick: propTypes.func.isRequired
 };
 
 export default ItemLists;

@@ -3,14 +3,14 @@ import { faTrash, faCheck, faEdit} from '@fortawesome/free-solid-svg-icons';
 
 import propTypes from 'prop-types';
 
-const ItemList = ({item, deleteBtnClick, doneBtnClick}) => {
+const ItemList = ({item, deleteBtnClick, doneBtnClick, editBtnClick}) => {
     return (
         <li className="list-group-item" key={item.id}>
             <div className="d-flex justify-content-between align-items-center w-100">
                 <span className="">{item.name}</span>
                 <div className="d-flex align-items-center">
                     <div className="vr me-2 ms-2"></div>
-                    <button className="btn btn-xs btn-secondary">
+                    <button className="btn btn-xs btn-secondary" onClick={() => editBtnClick(item)}>
                         <FontAwesomeIcon icon={faEdit} />
                     </button>
                     <div className="vr me-2 ms-2"></div>
@@ -21,7 +21,6 @@ const ItemList = ({item, deleteBtnClick, doneBtnClick}) => {
                     <button className={`btn btn-xs ${item.status ? 'btn-warning disabled' : 'btn-success'}`} onClick={() => doneBtnClick(item.id)}>
                         <FontAwesomeIcon icon={faCheck} />
                     </button>
-                    
                 </div>
             </div>
         </li>
@@ -35,7 +34,8 @@ ItemList.propTypes = {
         status: propTypes.bool.isRequired
     }).isRequired,
     deleteBtnClick: propTypes.func.isRequired,
-    doneBtnClick: propTypes.func.isRequired
+    doneBtnClick: propTypes.func.isRequired,
+    editBtnClick: propTypes.func.isRequired
 }
 
 export default ItemList

@@ -6,14 +6,42 @@ import AddItem from './components/AddItem';
 
 function App() {
 
-  const [items,setItems] = useState([]);
+  const [items,setItems] = useState([
+    {id:1, name:'Learn React', status: false},
+    {id:2, name:'Learn Node', status: false},
+    {id:3, name:'Learn Express', status: false},
+    {id:4, name:'Learn MongoDB', status: false},
+  ]);
+  let [item, setItem] = useState(null);
+
+  const handleValueChange = (e) => {
+    setItem((previous)=>{
+      return {
+      id : previous?.id || undefined,
+      name: e.target.value,
+      status: false
+    }});
+  }
 
   const addItemClick = () => {
-    let task = document.getElementById('task').value;
-    if(task === '') return;
-    let newItem = {id: items.length + 1, name: task, status: false};
+    if(item === null || item.name === ''){
+        return;
+    }
+    
+    if(item.id){
+      const otherItems = items.filter((i)=> i.id !== item.id);
+      setItems([...otherItems, item].sort((a,b)=> a.id - b.id));
+      setItem(null);
+      return;
+    }
+
+    let newItem = {
+        id: items.length + 1,
+        name: item.name,
+        status: false,
+    }
     setItems([...items, newItem]);
-    document.getElementById('task').value = '';
+    setItem(null);
   }
 
   const deleteBtnClick  = (id) => {
@@ -30,6 +58,12 @@ function App() {
     }))
   }
 
+  const editBtnClick = (item) =>{
+    setItem(item);
+  }
+
+
+
   return (
     <>
       <div className='container'>
@@ -41,14 +75,14 @@ function App() {
             <hr className="border border-muted opacity-50"></hr>
           </div>
           <div className="col-md-12">
-            <AddItem addItemClick={addItemClick} />
+              <AddItem value={item} onHandleChange={handleValueChange} onHandleAddItem={addItemClick} />
           </div>
           <div className="col-md-12">
             <hr className="border border-muted opacity-50"></hr>
           </div>
           <div className="col-md-12">
             <ul className="list-group">
-                <ItemLists items={items} doneBtnClick={doneBtnClick} deleteBtnClick={deleteBtnClick} />
+                <ItemLists items={items} doneBtnClick={doneBtnClick} deleteBtnClick={deleteBtnClick} editBtnClick={editBtnClick} />
             </ul>
           </div>
         </div>
