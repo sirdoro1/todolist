@@ -6,12 +6,7 @@ import AddItem from './components/AddItem';
 
 function App() {
 
-  const [items,setItems] = useState([
-    {id:1, name:'Learn React', status: false},
-    {id:2, name:'Learn Node', status: false},
-    {id:3, name:'Learn Express', status: false},
-    {id:4, name:'Learn MongoDB', status: false},
-  ]);
+  const [items,setItems] = useState([]);
   let [item, setItem] = useState(null);
 
   const handleValueChange = (e) => {
