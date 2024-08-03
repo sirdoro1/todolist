@@ -22,10 +22,6 @@ function App() {
     if(item === null || item.name === ''){
         return;
     }
-
-
-    console.log(items);
-    // return;
     
     if(item.id){
       const otherItems = items.filter((i)=> i.id !== item.id);
