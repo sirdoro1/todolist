@@ -22,6 +22,10 @@ function App() {
     if(item === null || item.name === ''){
         return;
     }
+
+
+    console.log(items);
+    // return;
     
     if(item.id){
       const otherItems = items.filter((i)=> i.id !== item.id);
@@ -30,12 +34,19 @@ function App() {
       return;
     }
 
-    let newItem = {
-        id: items.length + 1,
-        name: item.name,
-        status: false,
+    let newItemId;
+    if(items.length === 0){
+      newItemId = 1;
+    } else {
+      newItemId = Math.max(...items.map(item => item.id)) + 1;
     }
-    setItems([...items, newItem]);
+
+    let newItem = {
+      id: newItemId,
+      name: item.name,
+      status: false,
+    }
+    setItems([...items, newItem].sort((a,b) => a.id - b.id));
     setItem(null);
   }
 
